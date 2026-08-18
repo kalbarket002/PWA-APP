@@ -9,7 +9,12 @@
     <meta name="theme-color" content="#2196f3">
     <meta name="description" content="Aplikasi PWA pertama saya">
 
-    <link rel="manifest" href="manifest.json">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+
+    <!-- App Icon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+    <link rel="apple-touch-icon" href="./icons/icon-192.png">
 </head>
 
 <body>
@@ -21,18 +26,21 @@
     <button onclick="alert('Halo! PWA berhasil berjalan.')">
         Klik Saya
     </button>
+
+    <!-- Service Worker -->
     <script>
-    if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-            navigator.serviceWorker.register("./service-worker.js")
-                .then(() => {
-                    console.log("Service Worker berhasil didaftarkan");
-                })
-                .catch((error) => {
-                    console.error("Service Worker gagal:", error);
-                });
-        });
-    }
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("./service-worker.js")
+                    .then(() => {
+                        console.log("Service Worker berhasil didaftarkan");
+                    })
+                    .catch((error) => {
+                        console.error("Service Worker gagal:", error);
+                    });
+            });
+        }
     </script>
+
 </body>
 </html>
