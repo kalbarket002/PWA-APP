@@ -7,33 +7,236 @@
     <title>PWA APP</title>
 
     <meta name="theme-color" content="#2196f3">
-    <meta name="description" content="Aplikasi PWA pertama saya">
+    <meta name="description" content="PWA APP">
 
-    <!-- PWA Manifest -->
     <link rel="manifest" href="./manifest.json">
+    <link rel="icon" href="./icons/icon-192.png">
 
-    <!-- App Icon -->
-    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
-    <link rel="apple-touch-icon" href="./icons/icon-192.png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: #2196f3;
+            color: white;
+            padding: 25px 20px;
+            border-radius: 0 0 25px 25px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+        }
+
+        .container {
+            padding: 20px;
+            padding-bottom: 90px;
+        }
+
+        .welcome {
+            margin-bottom: 20px;
+        }
+
+        .welcome h2 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .welcome p {
+            color: #777;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            border: none;
+            background: #2196f3;
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .button:active {
+            transform: scale(0.98);
+        }
+
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .menu-item .icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .menu-item p {
+            font-weight: bold;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            height: 65px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -3px 15px rgba(0,0,0,0.08);
+        }
+
+        .nav-item {
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .nav-item .icon {
+            display: block;
+            font-size: 22px;
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active {
+            color: #2196f3;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>🚀 PWA APP</h1>
+    <header class="header">
+        <h1>🚀 PWA APP</h1>
+        <p>Aplikasi web modern kamu</p>
+    </header>
 
-    <p>Selamat datang di aplikasi PWA pertama saya.</p>
+    <main class="container">
 
-    <button onclick="alert('Halo! PWA berhasil berjalan.')">
-        Klik Saya
-    </button>
+        <section class="welcome">
+            <h2>Selamat Datang 👋</h2>
+            <p>Senang melihat kamu kembali.</p>
+        </section>
 
-    <!-- Service Worker -->
+        <section class="card">
+            <h3>Mulai Sekarang</h3>
+            <p>
+                Ini adalah halaman utama PWA APP.
+                Kita akan mengembangkan aplikasi ini
+                sesuai kebutuhan kamu.
+            </p>
+
+            <button class="button" onclick="mulaiAplikasi()">
+                Mulai Aplikasi
+            </button>
+        </section>
+
+        <section class="menu">
+
+            <div class="menu-item" onclick="menuKlik('Dashboard')">
+                <div class="icon">📊</div>
+                <p>Dashboard</p>
+            </div>
+
+            <div class="menu-item" onclick="menuKlik('Data')">
+                <div class="icon">📁</div>
+                <p>Data</p>
+            </div>
+
+            <div class="menu-item" onclick="menuKlik('Pengaturan')">
+                <div class="icon">⚙️</div>
+                <p>Pengaturan</p>
+            </div>
+
+            <div class="menu-item" onclick="menuKlik('Profil')">
+                <div class="icon">👤</div>
+                <p>Profil</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <nav class="bottom-nav">
+
+        <div class="nav-item active">
+            <span class="icon">🏠</span>
+            Home
+        </div>
+
+        <div class="nav-item">
+            <span class="icon">📊</span>
+            Data
+        </div>
+
+        <div class="nav-item">
+            <span class="icon">⚙️</span>
+            Setting
+        </div>
+
+    </nav>
+
     <script>
+        function mulaiAplikasi() {
+            alert("Selamat datang di PWA APP!");
+        }
+
+        function menuKlik(menu) {
+            alert("Kamu memilih menu " + menu);
+        }
+
+        // Service Worker
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", () => {
                 navigator.serviceWorker.register("./service-worker.js")
                     .then(() => {
-                        console.log("Service Worker berhasil didaftarkan");
+                        console.log("Service Worker aktif");
                     })
                     .catch((error) => {
                         console.error("Service Worker gagal:", error);
